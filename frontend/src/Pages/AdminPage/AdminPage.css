@@ -93,26 +93,26 @@
 }
 
 /* ========== СТАТИСТИКА ========== */
-.stats-grid {
+.admin-stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
   margin-bottom: 32px;
 }
 
 @media (max-width: 768px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .admin-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 480px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
+  .admin-stats-grid {
+    grid-template-columns: 2fr;
   }
 }
 
-.stat-card {
+.admin-stat-card {
   background: white;
   border-radius: 20px;
   padding: 20px;
@@ -124,12 +124,12 @@
   border: 1px solid #f0eae0;
 }
 
-.stat-card:hover {
+.admin-stat-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
-.stat-icon {
+.admin-stat-icon {
   width: 56px;
   height: 56px;
   background: linear-gradient(135deg, #fef5ed 0%, #fff5ed 100%);
@@ -140,19 +140,19 @@
   font-size: 2rem;
 }
 
-.stat-info {
+.admin-stat-info {
   display: flex;
   flex-direction: column;
 }
 
-.stat-value {
+.admin-stat-value {
   font-size: 2rem;
   font-weight: 700;
   color: #b22222;
   line-height: 1;
 }
 
-.stat-label {
+.admin-stat-label {
   font-size: 0.85rem;
   color: #9b8e7a;
   margin-top: 4px;

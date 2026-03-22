@@ -254,33 +254,51 @@ const AdminPage: React.FC = () => {
 
       <div className="dashboard-container">
         {/* Статистика */}
-        <div className="stats-grid">
-          <div className="stat-card">
-            <div className="stat-icon">🏙️</div>
-            <div className="stat-info">
-              <span className="stat-value">{stats.totalCities}</span>
-              <span className="stat-label">Городов</span>
+        <div className="admin-stats-grid">
+          <div className="admin-stat-card">
+            <div className="admin-stat-icon">🏙️</div>
+            <div className="admin-stat-info">
+              <span className="admin-stat-value">{stats.totalCities}</span>
+              <span className="admin-stat-label">Городов</span>
             </div>
           </div>
-          <div className="stat-card">
-            <div className="stat-icon">👥</div>
-            <div className="stat-info">
-              <span className="stat-value">{stats.totalAdmins}</span>
-              <span className="stat-label">Администраторов</span>
+          <div className="admin-stat-card">
+            <div className="admin-stat-icon">👥</div>
+            <div className="admin-stat-info">
+              <span className="admin-stat-value">{stats.totalAdmins}</span>
+              <span className="admin-stat-label">Администраторов</span>
             </div>
           </div>
-          <div className="stat-card">
-            <div className="stat-icon">🔫</div>
-            <div className="stat-info">
-              <span className="stat-value">{stats.categoriesCount.weapon}</span>
-              <span className="stat-label">Оружейные города</span>
+          <div className="admin-stat-card">
+            <div className="admin-stat-icon">🔫</div>
+            <div className="admin-stat-info">
+              <span className="admin-stat-value">
+                {stats.categoriesCount.weapon}
+              </span>
             </div>
           </div>
-          <div className="stat-card">
-            <div className="stat-icon">⚙️</div>
-            <div className="stat-info">
-              <span className="stat-value">{stats.categoriesCount.tech}</span>
-              <span className="stat-label">Технические города</span>
+          <div className="admin-stat-card">
+            <div className="admin-stat-icon">⚙️</div>
+            <div className="admin-stat-info">
+              <span className="admin-stat-value">
+                {stats.categoriesCount.tech}
+              </span>
+            </div>
+          </div>
+          <div className="admin-stat-card">
+            <div className="admin-stat-icon">🍔</div>
+            <div className="admin-stat-info">
+              <span className="admin-stat-value">
+                {stats.categoriesCount.food}
+              </span>
+            </div>
+          </div>
+          <div className="admin-stat-card">
+            <div className="admin-stat-icon">👕</div>
+            <div className="admin-stat-info">
+              <span className="admin-stat-value">
+                {stats.categoriesCount.uniform}
+              </span>
             </div>
           </div>
         </div>
