@@ -58,7 +58,6 @@ const SearchPage = (props: Props) => {
       });
   };
 
-  // Имитация загрузки данных (без API)
   useEffect(() => {
     setCities(data);
     // getCities();

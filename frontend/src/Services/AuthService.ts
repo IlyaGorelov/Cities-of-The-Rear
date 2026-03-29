@@ -31,15 +31,6 @@ export const registerAdminAPI = async (username: string,email: string, password:
     } 
 }
 
-export const deleteMeApi = async ()=>{
-    try {
-        const data = await axios.delete(api+"account");
-        return data;
-    } catch (error) {
-        handleError(error)
-    } 
-}
-
 export const deleteAccountByIdApi = async (id:number)=>{
     try {
         const data = await axios.delete(api+`account/admin/${number}`);

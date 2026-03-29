@@ -1,4 +1,3 @@
-// src/pages/CitiesMapPage/CitiesMapPage.tsx
 import { useState, useEffect } from "react";
 import "./MapPage.css";
 import { City } from "../../Models/City";
@@ -63,7 +62,6 @@ const CitiesMapPage = () => {
     setLoading(false);
   };
 
-  // Фильтрация городов
   const filteredCities = (() => {
     if (!filterCategory) return cities;
     return cities.filter((city) => city.categories.includes(filterCategory));
@@ -93,7 +91,6 @@ const CitiesMapPage = () => {
           маркер, чтобы увидеть подробную информацию о городе.
         </p>
 
-        {/* Фильтры */}
         <div className="filters-section">
           <div className="filter-group">
             <h4>Производственные категории</h4>
@@ -105,7 +102,7 @@ const CitiesMapPage = () => {
                   setFilterType("production");
                 }}
               >
-                🔫 Оружие
+                Оружие
               </button>
               <button
                 className={`filter-btn technic ${filterCategory === Category.Technic ? "active" : ""}`}
@@ -114,7 +111,7 @@ const CitiesMapPage = () => {
                   setFilterType("production");
                 }}
               >
-                ⚙️ Техника
+                Техника
               </button>
               <button
                 className={`filter-btn uniform ${filterCategory === Category.Uniform ? "active" : ""}`}
@@ -123,7 +120,7 @@ const CitiesMapPage = () => {
                   setFilterType("production");
                 }}
               >
-                👕 Обмундирование
+                Обмундирование
               </button>
               <button
                 className={`filter-btn food ${filterCategory === Category.Food ? "active" : ""}`}
@@ -132,7 +129,7 @@ const CitiesMapPage = () => {
                   setFilterType("production");
                 }}
               >
-                🍞 Продовольствие
+                Продовольствие
               </button>
             </div>
           </div>
@@ -150,7 +147,6 @@ const CitiesMapPage = () => {
           )}
         </div>
 
-        {/* Карта - увеличенная */}
         <div className="map-wrapper">
           <CitiesMap
             cities={filteredCities}
@@ -163,7 +159,6 @@ const CitiesMapPage = () => {
   );
 };
 
-// Тестовые данные с новыми категориями
 const mockCities: City[] = [
   {
     id: 1,

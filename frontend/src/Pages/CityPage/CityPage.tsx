@@ -101,7 +101,6 @@ const CityPage = (props: Props) => {
 
   const fullDescription = city.longDesc || city.shortDesc;
 
-  // Проверяем, содержит ли описание HTML-теги (из Quill)
   const hasHtmlContent = /<[a-z][\s\S]*>/i.test(fullDescription.toString());
 
   return (
@@ -139,7 +138,6 @@ const CityPage = (props: Props) => {
               </div>
             </section>
 
-            {/* Краткое описание */}
             <section className="city-page-section">
               <h2 className="city-page-section-title">
                 <span className="city-page-section-icon">📖</span>
@@ -150,7 +148,6 @@ const CityPage = (props: Props) => {
               </div>
             </section>
 
-            {/* Полное описание (с поддержкой Quill HTML) */}
             <section className="city-page-section">
               <h2 className="city-page-section-title">
                 <span className="city-page-section-icon">📚</span>
@@ -166,7 +163,6 @@ const CityPage = (props: Props) => {
             </section>
           </div>
 
-          {/* Правая колонка - сайдбар */}
           <div className="city-page-sidebar">
             {/* Категории */}
             <div className="city-page-sidebar-card">
@@ -185,7 +181,6 @@ const CityPage = (props: Props) => {
               </div>
             </div>
 
-            {/* Статистика */}
             <div className="city-page-sidebar-card">
               <h3 className="city-page-sidebar-title">
                 <span className="city-page-sidebar-icon">📊</span>

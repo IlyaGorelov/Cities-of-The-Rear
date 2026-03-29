@@ -181,7 +181,6 @@ const AdminPage: React.FC = () => {
     setAddingAdmin(true);
 
     await registerAdminAPI(form.userName, form.email, form.password);
-    // Имитация добавления
   };
 
   const handleDeleteAdmin = async (id: number) => {
@@ -227,7 +226,6 @@ const AdminPage: React.FC = () => {
 
   return (
     <div className="admin-dashboard">
-      {/* Шапка */}
       <div className="dashboard-header">
         <div className="dashboard-header-content">
           <div className="header-left">
@@ -253,7 +251,6 @@ const AdminPage: React.FC = () => {
       </div>
 
       <div className="dashboard-container">
-        {/* Статистика */}
         <div className="admin-stats-grid">
           <div className="admin-stat-card">
             <div className="admin-stat-icon">🏙️</div>
@@ -303,7 +300,6 @@ const AdminPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Кнопки действий */}
         <div className="actions-bar">
           <button
             className="action-btn primary"
@@ -339,7 +335,6 @@ const AdminPage: React.FC = () => {
           </button>
         </div>
 
-        {/* Список городов */}
         <div className="dashboard-section">
           <div className="section-header">
             <h2>
@@ -378,10 +373,10 @@ const AdminPage: React.FC = () => {
                       <div className="city-categories">
                         {city.categories.map((cat) => (
                           <span key={cat} className={`category-badge ${cat}`}>
-                            {cat === 1 && "🔫 Оружие"}
-                            {cat === 2 && "👕 Обмундирование"}
-                            {cat === 3 && "⚙️ Техника"}
-                            {cat === 4 && "🍞 Продовольствие"}
+                            {cat === 1 && "Оружие"}
+                            {cat === 2 && "Обмундирование"}
+                            {cat === 3 && "Техника"}
+                            {cat === 4 && "Продовольствие"}
                           </span>
                         ))}
                       </div>
@@ -411,7 +406,6 @@ const AdminPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Список администраторов */}
         <div className="dashboard-section">
           <div className="section-header">
             <h2>

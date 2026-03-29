@@ -14,7 +14,6 @@ import {
 } from "../../Services/CityService";
 import { City, CityPost } from "../../Models/City";
 
-// Исправляем проблему с иконками маркеров в React-Leaflet
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -32,7 +31,6 @@ interface Category {
   color: string;
 }
 
-// Компонент для выбора местоположения на карте
 const LocationMarker = ({
   position,
   setPosition,
@@ -48,11 +46,7 @@ const LocationMarker = ({
     },
   });
 
-  return position === null ? null : (
-    <Marker position={position}>
-      {/* Можно добавить всплывающую подсказку */}
-    </Marker>
-  );
+  return position === null ? null : <Marker position={position}></Marker>;
 };
 
 const EditCityPage: React.FC = () => {
@@ -66,7 +60,6 @@ const EditCityPage: React.FC = () => {
     55.751244, 37.618423,
   ]);
 
-  // Данные города
   const [city, setCity] = useState<City>({
     id: 0,
     name: "",
@@ -75,7 +68,7 @@ const EditCityPage: React.FC = () => {
     longDesc: "",
     contribution: "",
     categories: [],
-    coordinates: [55.751244, 37.618423], // Добавляем координаты
+    coordinates: [55.751244, 37.618423],
   });
 
   const categories: Category[] = [
@@ -88,7 +81,6 @@ const EditCityPage: React.FC = () => {
     { id: 7, name: "Обмундирование", icon: "👕", color: "#8b5cf6" },
   ];
 
-  // Конфигурация Quill
   const quillModules = {
     toolbar: [
       [{ header: [1, 2, 3, 4, false] }],
@@ -243,7 +235,6 @@ const EditCityPage: React.FC = () => {
 
   return (
     <div className="edit-city-page">
-      {/* Заголовок */}
       <div className="edit-header">
         <div className="edit-header-content">
           <button className="back-btn" onClick={() => navigate("/admin")}>
@@ -303,12 +294,9 @@ const EditCityPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Основной контент */}
       <div className="edit-container">
         <div className="edit-grid">
-          {/* Левая колонка - форма */}
           <div className="edit-form-column">
-            {/* Название города */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">🏙️</span>
@@ -327,7 +315,6 @@ const EditCityPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Координаты */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">📍</span>
@@ -367,7 +354,6 @@ const EditCityPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Изображение */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">🖼️</span>
@@ -385,7 +371,6 @@ const EditCityPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Краткое описание */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">📝</span>
@@ -407,7 +392,6 @@ const EditCityPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Основной вклад */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">🏆</span>
@@ -428,7 +412,6 @@ const EditCityPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Категории */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">🏷️</span>
@@ -473,9 +456,7 @@ const EditCityPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Правая колонка - превью и редактор */}
           <div className="edit-preview-column">
-            {/* Превью изображения */}
             <div className="preview-section">
               <label className="form-label">
                 <span className="label-icon">👁️</span>
@@ -517,7 +498,6 @@ const EditCityPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Карта для выбора местоположения */}
             <div className="preview-section">
               <label className="form-label">
                 <span className="label-icon">🗺️</span>
@@ -548,7 +528,6 @@ const EditCityPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Quill редактор для полного описания */}
             <div className="preview-section">
               <label className="form-label">
                 <span className="label-icon">📖</span>
@@ -571,7 +550,6 @@ const EditCityPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Превью категорий */}
             {city.categories.length > 0 && (
               <div className="preview-section">
                 <label className="form-label">
@@ -602,7 +580,6 @@ const EditCityPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Модальное окно подтверждения удаления */}
       {showDeleteConfirm && (
         <div
           className="modal-overlay"

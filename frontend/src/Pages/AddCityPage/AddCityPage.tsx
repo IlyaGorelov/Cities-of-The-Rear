@@ -7,8 +7,8 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./AddCityPage.css";
 import { postCityApi } from "../../Services/CityService";
+import AddCityPageHeader from "../../Components/AddCityPage/AddCityPageHeader/AddCityPageHeader";
 
-// Исправляем проблему с иконками маркеров в React-Leaflet
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -22,11 +22,9 @@ L.Icon.Default.mergeOptions({
 interface Category {
   id: number;
   name: string;
-  icon: string;
   color: string;
 }
 
-// Компонент для выбора местоположения на карте
 const LocationMarker = ({
   position,
   setPosition,
@@ -42,11 +40,7 @@ const LocationMarker = ({
     },
   });
 
-  return position === null ? null : (
-    <Marker position={position}>
-      {/* Можно добавить всплывающую подсказку */}
-    </Marker>
-  );
+  return position === null ? null : <Marker position={position}></Marker>;
 };
 
 const AddCityPage: React.FC = () => {
@@ -67,13 +61,10 @@ const AddCityPage: React.FC = () => {
   });
 
   const categories: Category[] = [
-    { id: 1, name: "Город-герой", icon: "⭐", color: "#ffd700" },
-    { id: 2, name: "Город воинской славы", icon: "★", color: "#b22222" },
-    { id: 3, name: "Город трудовой доблести", icon: "⚒️", color: "#2c5282" },
-    { id: 4, name: "Оружие", icon: "🔫", color: "#dc2626" },
-    { id: 5, name: "Техника", icon: "⚙️", color: "#f59e0b" },
-    { id: 6, name: "Продовольствие", icon: "🍞", color: "#10b981" },
-    { id: 7, name: "Обмундирование", icon: "👕", color: "#8b5cf6" },
+    { id: 1, name: "Оружие", color: "#dc2626" },
+    { id: 2, name: "Обмундирование", color: "#8b5cf6" },
+    { id: 3, name: "Техника", color: "#f59e0b" },
+    { id: 4, name: "Продовольствие", color: "#10b981" },
   ];
 
   const quillModules = {
@@ -138,36 +129,6 @@ const AddCityPage: React.FC = () => {
     setMapCenter(position);
   };
 
-  // Функция для получения названия города по координатам (геокодинг)
-  const getCityNameFromCoordinates = async (lat: number, lng: number) => {
-    try {
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`,
-      );
-      const data = await response.json();
-      if (data.address) {
-        const cityName =
-          data.address.city || data.address.town || data.address.village;
-        if (cityName && !city.name) {
-          setCity((prev) => ({ ...prev, name: cityName }));
-          alert(`Определен город: ${cityName}`);
-        } else if (cityName && city.name !== cityName) {
-          const confirmChange = window.confirm(
-            `Найден город: ${cityName}\n\nЗаменить текущее название "${city.name}" на "${cityName}"?`,
-          );
-          if (confirmChange) {
-            setCity((prev) => ({ ...prev, name: cityName }));
-          }
-        }
-      } else {
-        alert("Не удалось определить город по координатам");
-      }
-    } catch (error) {
-      console.log("Ошибка геокодинга:", error);
-      alert("Ошибка при определении города");
-    }
-  };
-
   const handleSave = async () => {
     if (!city.name.trim()) {
       alert("Введите название города");
@@ -214,39 +175,11 @@ const AddCityPage: React.FC = () => {
 
   return (
     <div className="add-city-page">
-      <div className="add-header">
-        <div className="add-header-content">
-          <button className="back-btn" onClick={() => navigate("/adminpanel")}>
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M19 12H5M12 19l-7-7 7-7" />
-            </svg>
-            Назад
-          </button>
-          <h1>Добавление города</h1>
-          <button className="save-btn" onClick={handleSave} disabled={saving}>
-            {saving ? (
-              <>
-                <div className="btn-spinner"></div>
-                Добавление...
-              </>
-            ) : (
-              "Добавить город"
-            )}
-          </button>
-        </div>
-      </div>
+      <AddCityPageHeader saving={saving} handleSave={handleSave} />
 
       <div className="add-container">
         <div className="add-grid">
           <div className="add-form-column">
-            {/* Название города */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">🏙️</span>
@@ -265,7 +198,6 @@ const AddCityPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Координаты */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">📍</span>
@@ -299,35 +231,12 @@ const AddCityPage: React.FC = () => {
                     placeholder="37.618423"
                   />
                 </div>
-                <button
-                  type="button"
-                  className="geocode-btn"
-                  onClick={() =>
-                    getCityNameFromCoordinates(
-                      city.coordinates[0],
-                      city.coordinates[1],
-                    )
-                  }
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                    <circle cx="12" cy="10" r="3" />
-                  </svg>
-                  Определить город
-                </button>
               </div>
               <p className="form-hint">
                 Введите координаты или кликните на карте справа
               </p>
             </div>
 
-            {/* URL изображения */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">🖼️</span>
@@ -338,14 +247,12 @@ const AddCityPage: React.FC = () => {
                 className="form-input"
                 value={city.imageUrl}
                 onChange={(e) => setCity({ ...city, imageUrl: e.target.value })}
-                placeholder="https://example.com/image.jpg"
               />
               <p className="form-hint">
                 Вставьте прямую ссылку на изображение города
               </p>
             </div>
 
-            {/* Краткое описание */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">📝</span>
@@ -367,7 +274,6 @@ const AddCityPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Основной вклад */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">🏆</span>
@@ -388,7 +294,6 @@ const AddCityPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Категории */}
             <div className="form-section">
               <label className="form-label">
                 <span className="label-icon">🏷️</span>
@@ -410,7 +315,6 @@ const AddCityPage: React.FC = () => {
                     }}
                     onClick={() => handleCategoryToggle(cat.id)}
                   >
-                    <span className="category-icon">{cat.icon}</span>
                     <span>{cat.name}</span>
                     {city.categories.includes(cat.id) && (
                       <svg
@@ -434,7 +338,6 @@ const AddCityPage: React.FC = () => {
           </div>
 
           <div className="add-preview-column">
-            {/* Превью изображения */}
             <div className="preview-section">
               <label className="form-label">
                 <span className="label-icon">👁️</span>
@@ -476,7 +379,6 @@ const AddCityPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Карта для выбора местоположения */}
             <div className="preview-section">
               <label className="form-label">
                 <span className="label-icon">🗺️</span>
@@ -507,7 +409,6 @@ const AddCityPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Полное описание */}
             <div className="preview-section">
               <label className="form-label">
                 <span className="label-icon">📖</span>
@@ -530,7 +431,6 @@ const AddCityPage: React.FC = () => {
               </p>
             </div>
 
-            {/* Превью выбранных категорий */}
             {city.categories.length > 0 && (
               <div className="preview-section">
                 <label className="form-label">
@@ -549,7 +449,6 @@ const AddCityPage: React.FC = () => {
                           borderColor: cat.color,
                         }}
                       >
-                        <span>{cat.icon}</span>
                         <span>{cat.name}</span>
                       </span>
                     ) : null;
