@@ -5,6 +5,15 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { City } from "../../Models/City";
 import { Category } from "../../Models/Category";
+import {
+  Book,
+  ChartColumn,
+  Cog,
+  NotebookText,
+  Star,
+  Tag,
+  Trophy,
+} from "lucide-react";
 
 type Props = {};
 
@@ -19,9 +28,9 @@ const QuillContent: React.FC<{ content: string }> = ({ content }) => {
 
 const c: City = {
   id: 1,
-  name: "Челяба",
+  name: "Челябинск",
   imageUrl:
-    "https://avatars.mds.yandex.net/get-kinopoisk-image/10835644/e07d6e9d-ccea-4117-9f0a-e05dedd11d36/600x900",
+    "https://upload.wikimedia.org/wikipedia/ru/8/8f/Ploszczadj_Riewoliuucyi_w_Czeliaabinskie_%281950%29.jpg",
   shortDesc: "verebes",
   longDesc: `<p>Здесь создается переменная <code>current</code>, которая имеет тип Season. При этом консоль браузера выведет нам число 2 - значение константы 
 <code>Season.Summer</code>.</p>
@@ -114,7 +123,9 @@ const CityPage = (props: Props) => {
         >
           <div className="city-page-hero-overlay">
             <div className="city-page-badge">
-              <span className="city-page-badge-icon">⭐</span>
+              <span className="city-page-badge-icon">
+                <Star color="#fff705" fill="#fff705" />
+              </span>
               <span>Город трудовой доблести</span>
             </div>
             <h1 className="city-page-title">{city.name}</h1>
@@ -127,11 +138,15 @@ const CityPage = (props: Props) => {
           <div className="city-page-main">
             <section className="city-page-section">
               <h2 className="city-page-section-title">
-                <span className="city-page-section-icon">🏆</span>
+                <span className="city-page-section-icon">
+                  <Trophy />
+                </span>
                 Основной вклад в Победу
               </h2>
               <div className="city-page-contribution-card">
-                <span className="city-page-contribution-icon">⚙️</span>
+                <span className="city-page-contribution-icon">
+                  <Cog />
+                </span>
                 <p className="city-page-contribution-text">
                   {city.contribution}
                 </p>
@@ -140,7 +155,9 @@ const CityPage = (props: Props) => {
 
             <section className="city-page-section">
               <h2 className="city-page-section-title">
-                <span className="city-page-section-icon">📖</span>
+                <span className="city-page-section-icon">
+                  <NotebookText />
+                </span>
                 Краткое описание
               </h2>
               <div className="city-page-short-description">
@@ -150,7 +167,9 @@ const CityPage = (props: Props) => {
 
             <section className="city-page-section">
               <h2 className="city-page-section-title">
-                <span className="city-page-section-icon">📚</span>
+                <span className="city-page-section-icon">
+                  <Book />
+                </span>
                 Подробная история
               </h2>
               <div className="city-page-full-description">
@@ -167,7 +186,9 @@ const CityPage = (props: Props) => {
             {/* Категории */}
             <div className="city-page-sidebar-card">
               <h3 className="city-page-sidebar-title">
-                <span className="city-page-sidebar-icon">🏷️</span>
+                <span className="city-page-sidebar-icon">
+                  <Tag />
+                </span>
                 Категории
               </h3>
               <div className="city-page-categories-list">
@@ -183,7 +204,9 @@ const CityPage = (props: Props) => {
 
             <div className="city-page-sidebar-card">
               <h3 className="city-page-sidebar-title">
-                <span className="city-page-sidebar-icon">📊</span>
+                <span className="city-page-sidebar-icon">
+                  <ChartColumn />
+                </span>
                 Статистика
               </h3>
               <div className="city-page-stats-list">

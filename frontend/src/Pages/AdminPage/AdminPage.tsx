@@ -14,6 +14,17 @@ import {
 } from "../../Services/AuthService";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import {
+  Cog,
+  CookingPot,
+  Crown,
+  LandPlot,
+  Pencil,
+  Shield,
+  Shirt,
+  Trash2,
+  Users,
+} from "lucide-react";
 
 type RegisterFormsInput = {
   email: string;
@@ -253,21 +264,35 @@ const AdminPage: React.FC = () => {
       <div className="dashboard-container">
         <div className="admin-stats-grid">
           <div className="admin-stat-card">
-            <div className="admin-stat-icon">🏙️</div>
+            <div className="admin-stat-icon">
+              <LandPlot />
+            </div>
             <div className="admin-stat-info">
               <span className="admin-stat-value">{stats.totalCities}</span>
               <span className="admin-stat-label">Городов</span>
             </div>
           </div>
           <div className="admin-stat-card">
-            <div className="admin-stat-icon">👥</div>
+            <div className="admin-stat-icon">
+              <Users />
+            </div>
             <div className="admin-stat-info">
               <span className="admin-stat-value">{stats.totalAdmins}</span>
               <span className="admin-stat-label">Администраторов</span>
             </div>
           </div>
           <div className="admin-stat-card">
-            <div className="admin-stat-icon">🔫</div>
+            <div className="admin-stat-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="#000000"
+              >
+                <path d="M7 5h16v4h-1v1h-6a1 1 0 0 0-1 1v1a2 2 0 0 1-2 2H9.62c-.38 0-.73.22-.9.56l-2.45 4.89c-.17.34-.51.55-.89.55H2s-3 0 1-6c0 0 3-4-1-4V5h1l.5-1h3zm7 7v-1a1 1 0 0 0-1-1h-1s-1 1 0 2a2 2 0 0 1-2-2a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1" />
+              </svg>
+            </div>
             <div className="admin-stat-info">
               <span className="admin-stat-value">
                 {stats.categoriesCount.weapon}
@@ -275,7 +300,9 @@ const AdminPage: React.FC = () => {
             </div>
           </div>
           <div className="admin-stat-card">
-            <div className="admin-stat-icon">⚙️</div>
+            <div className="admin-stat-icon">
+              <Cog />
+            </div>
             <div className="admin-stat-info">
               <span className="admin-stat-value">
                 {stats.categoriesCount.tech}
@@ -283,7 +310,9 @@ const AdminPage: React.FC = () => {
             </div>
           </div>
           <div className="admin-stat-card">
-            <div className="admin-stat-icon">🍔</div>
+            <div className="admin-stat-icon">
+              <CookingPot />
+            </div>
             <div className="admin-stat-info">
               <span className="admin-stat-value">
                 {stats.categoriesCount.food}
@@ -291,7 +320,9 @@ const AdminPage: React.FC = () => {
             </div>
           </div>
           <div className="admin-stat-card">
-            <div className="admin-stat-icon">👕</div>
+            <div className="admin-stat-icon">
+              <Shirt />
+            </div>
             <div className="admin-stat-info">
               <span className="admin-stat-value">
                 {stats.categoriesCount.uniform}
@@ -338,7 +369,10 @@ const AdminPage: React.FC = () => {
         <div className="dashboard-section">
           <div className="section-header">
             <h2>
-              <span className="section-icon">🏙️</span>
+              <span className="section-icon">
+                {" "}
+                <LandPlot />
+              </span>
               Города трудовой доблести
             </h2>
             <span className="section-count">{cities.length} городов</span>
@@ -388,14 +422,14 @@ const AdminPage: React.FC = () => {
                           onClick={() => navigate(`/city/${city.id}/edit`)}
                           title="Редактировать"
                         >
-                          ✏️
+                          <Pencil />
                         </button>
                         <button
                           className="delete-btn"
                           onClick={() => handleDeleteCity(city.id)}
                           title="Удалить"
                         >
-                          🗑️
+                          <Trash2 />
                         </button>
                       </div>
                     </td>
@@ -409,7 +443,9 @@ const AdminPage: React.FC = () => {
         <div className="dashboard-section">
           <div className="section-header">
             <h2>
-              <span className="section-icon">👥</span>
+              <span className="section-icon">
+                <Users />
+              </span>
               Администраторы
             </h2>
             <span className="section-count">{admins.length} пользователей</span>
@@ -446,9 +482,16 @@ const AdminPage: React.FC = () => {
                     <td>{admin.email}</td>
                     <td>
                       <span className={`role-badge ${admin.role}`}>
-                        {admin.role === "super_admin"
-                          ? "👑 Супер-админ"
-                          : "🛡️ Админ"}
+                        {admin.role === "super_admin" ? (
+                          <>
+                            <Crown size={12} /> Супер-админ
+                          </>
+                        ) : (
+                          <>
+                            {" "}
+                            <Shield size={12} /> Админ
+                          </>
+                        )}
                       </span>
                     </td>
                     <td>{formatDate(admin.createdAt)}</td>
@@ -463,7 +506,7 @@ const AdminPage: React.FC = () => {
                             : "Удалить"
                         }
                       >
-                        🗑️
+                        <Trash2 />
                       </button>
                     </td>
                   </tr>

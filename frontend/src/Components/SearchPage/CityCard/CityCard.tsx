@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../Context/useAuth";
 import { City } from "../../../Models/City";
 import { deleteCityByIdApi } from "../../../Services/CityService";
+import { SquarePlus, Trash2 } from "lucide-react";
+import { Pencil } from "lucide-react";
 
 type Props = {
   city: City;
@@ -57,10 +59,10 @@ const CityCard = ({ city, onUpdated }: Props) => {
       {isLoggedIn() && (
         <div className="city-card-action-buttons">
           <button className="city-card-edit-btn" onClick={handleEdit}>
-            ✏️ Редактировать
+            <Pencil size={15} /> Редактировать
           </button>
           <button className="city-card-delete-btn" onClick={handleDelete}>
-            🗑️ Удалить
+            <Trash2 size={15} /> Удалить
           </button>
         </div>
       )}
@@ -71,7 +73,7 @@ const CityCard = ({ city, onUpdated }: Props) => {
           {city.shortDesc.length > 100 ? "..." : ""}
         </div>
         <div className="city-card-contribution-badge">
-          <i>⚙️</i> {city.contribution}
+          <SquarePlus size={20} /> &nbsp; {city.contribution}
         </div>
         <div className="city-card-category">
           {city.categories.map((result) => {

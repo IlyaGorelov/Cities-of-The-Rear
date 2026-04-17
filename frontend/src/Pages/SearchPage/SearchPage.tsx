@@ -4,6 +4,7 @@ import CitiesGrid from "../../Components/SearchPage/CitiesGrid/CitiesGrid";
 import { City } from "../../Models/City";
 import { useEffect, useState } from "react";
 import { getAllCitiesApi, getCityByIdApi } from "../../Services/CityService";
+import { Search } from "lucide-react";
 
 type Props = {};
 
@@ -86,7 +87,7 @@ const SearchPage = (props: Props) => {
             <div className="search-box">
               <input
                 type="text"
-                placeholder="🔍 Поиск города..."
+                placeholder={"Поиск города..."}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
