@@ -115,28 +115,28 @@ const EditCityPage: React.FC = () => {
     "image",
   ];
 
-  useEffect(() => {
-    if (id) {
-      getCity();
-    }
-  }, [id]);
+  // useEffect(() => {
+  //   if (id) {
+  //     getCity();
+  //   }
+  // }, [id]);
 
-  const getCity = async () => {
-    try {
-      setLoading(true);
-      const res = await getCityByIdApi(Number(id));
-      if (res?.data) {
-        setCity(res.data);
-        if (res.data.coordinates) {
-          setMapCenter(res.data.coordinates);
-        }
-      }
-    } catch (e) {
-      console.log("No city found");
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const getCity = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const res = await getCityByIdApi(Number(id));
+  //     if (res?.data) {
+  //       setCity(res.data);
+  //       if (res.data.coordinates) {
+  //         setMapCenter(res.data.coordinates);
+  //       }
+  //     }
+  //   } catch (e) {
+  //     console.log("No city found");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleCategoryToggle = (categoryId: number) => {
     setCity((prev) => ({
