@@ -35,7 +35,7 @@ const About = (props: Props) => {
                 героическом прошлом нашей страны.
               </p>
               <div className="creators">
-                <span>© 2024 Проект "Города трудовой доблести"</span>
+                <span>© 2026 Проект "Города трудовой доблести"</span>
               </div>
             </div>
           </div>
