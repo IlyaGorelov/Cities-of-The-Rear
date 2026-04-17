@@ -328,7 +328,7 @@ const EditCityPage: React.FC = () => {
                     type="number"
                     step="any"
                     className="form-input"
-                    value={city.coordinates[0]}
+                    value={city.coordinates?.[0] ?? 55.751244}
                     onChange={(e) =>
                       handleCoordinateChange("lat", e.target.value)
                     }
@@ -341,7 +341,7 @@ const EditCityPage: React.FC = () => {
                     type="number"
                     step="any"
                     className="form-input"
-                    value={city.coordinates[1]}
+                    value={city.coordinates?.[1] ?? 55.751244}
                     onChange={(e) =>
                       handleCoordinateChange("lng", e.target.value)
                     }
