@@ -234,7 +234,7 @@ const EditCityPage: React.FC = () => {
         city.categories,
         city.coordinates,
       );
-      navigate("/admin");
+      navigate("/");
     } catch (error) {
       console.log("Не удалось обновить город", error);
       alert("Произошла ошибка при сохранении");
@@ -275,7 +275,7 @@ const EditCityPage: React.FC = () => {
     <div className="edit-city-page">
       <div className="edit-header">
         <div className="edit-header-content">
-          <button className="back-btn" onClick={() => navigate("/admin")}>
+          <button className="back-btn" onClick={() => navigate("/")}>
             <svg
               width="20"
               height="20"
