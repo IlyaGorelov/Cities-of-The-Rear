@@ -4,6 +4,7 @@ import { City } from "../../Models/City";
 import { Category } from "../../Models/Category";
 import CitiesMap from "../../Components/CitiesMap/CitiesMap";
 import { getAllCitiesApi } from "../../Services/CityService";
+import { BounceLoader } from "react-spinners";
 
 const productionCategoryConfig: Record<
   Category,
@@ -41,7 +42,6 @@ const CitiesMapPage = () => {
 
   useEffect(() => {
     getCities();
-    setLoading(false);
   }, []);
 
   const getCities = async () => {
@@ -53,7 +53,8 @@ const CitiesMapPage = () => {
       })
       .catch((e) => {
         console.log("No city found");
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const filteredCities = (() => {
@@ -65,9 +66,15 @@ const CitiesMapPage = () => {
     return (
       <div className="cities-map-page">
         <div className="container">
-          <div className="loading-spinner">
-            <div className="spinner"></div>
-            <p>Загрузка карты городов...</p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "200px",
+            }}
+          >
+            <BounceLoader />
           </div>
         </div>
       </div>
