@@ -507,6 +507,9 @@ const AdminPage: React.FC = () => {
                   placeholder="Введите пароль"
                   {...register("password")}
                 />
+                {errors.password && (
+                  <p className="error-message">{errors.password.message}</p>
+                )}
               </div>
               <div className="modal-actions">
                 <button
