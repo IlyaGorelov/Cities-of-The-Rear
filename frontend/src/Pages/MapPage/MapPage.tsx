@@ -6,37 +6,9 @@ import CitiesMap from "../../Components/CitiesMap/CitiesMap";
 import { getAllCitiesApi } from "../../Services/CityService";
 import { BounceLoader } from "react-spinners";
 
-const productionCategoryConfig: Record<
-  Category,
-  { name: string; icon: string; color: string }
-> = {
-  [Category.Weapon]: { name: "Оружие", icon: "🔫", color: "#dc2626" },
-  [Category.Uniform]: { name: "Обмундирование", icon: "👕", color: "#8b5cf6" },
-  [Category.Technic]: { name: "Техника", icon: "⚙️", color: "#f59e0b" },
-  [Category.Food]: { name: "Продовольствие", icon: "🍞", color: "#10b981" },
-};
-
-const getCategoryNames = (categories: number[]) => {
-  const names: string[] = [];
-  categories.forEach((cat) => {
-    if (productionCategoryConfig[cat as Category]) {
-      names.push(productionCategoryConfig[cat as Category].name);
-    }
-  });
-  return names;
-};
-
-const getCategoryIcon = (categoryId: number): string => {
-  if (productionCategoryConfig[categoryId as Category]) {
-    return productionCategoryConfig[categoryId as Category].icon;
-  }
-  return "📍";
-};
-
 const CitiesMapPage = () => {
   const [cities, setCities] = useState<City[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCity, setSelectedCity] = useState<City | null>(null);
   const [filterCategory, setFilterCategory] = useState<number | null>(null);
   const [filterType, setFilterType] = useState<"all" | "production">("all");
 
