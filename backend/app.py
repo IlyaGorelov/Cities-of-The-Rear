@@ -22,12 +22,9 @@ jwt = JWTManager(app)
 db.init_app(app)
 
 
-try:
-    with app.app_context():
-        db.create_all()
-        create_superadmin()
-except Exception as e:
-    print("Database initialization error:", e)
+with app.app_context():
+    db.create_all()
+    create_superadmin()
 
 
 app.register_blueprint(auth_bp)
