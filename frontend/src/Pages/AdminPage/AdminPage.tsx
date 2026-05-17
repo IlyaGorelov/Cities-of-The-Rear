@@ -59,11 +59,7 @@ const AdminPage: React.FC = () => {
   const [cities, setCities] = useState<City[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddAdminModal, setShowAddAdminModal] = useState(false);
-  const [newAdmin, setNewAdmin] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
+
   const [addingAdmin, setAddingAdmin] = useState(false);
   const [stats, setStats] = useState({
     totalCities: 0,
@@ -80,6 +76,9 @@ const AdminPage: React.FC = () => {
       })
       .catch((e) => {
         console.log("No film found");
+      })
+      .finally(() => {
+        setStats((stats) => ({ ...stats, totalAdmins: admins.length }));
       });
   };
 
@@ -92,6 +91,18 @@ const AdminPage: React.FC = () => {
       })
       .catch((e) => {
         console.log("No city found");
+      })
+      .finally(() => {
+        setStats((stats) => ({
+          ...stats,
+          totalCities: cities.length,
+          categoriesCount: {
+            weapon: cities.filter((c) => c.categories.includes(1)).length,
+            uniform: cities.filter((c) => c.categories.includes(2)).length,
+            tech: cities.filter((c) => c.categories.includes(3)).length,
+            food: cities.filter((c) => c.categories.includes(4)).length,
+          },
+        }));
       });
   };
 
